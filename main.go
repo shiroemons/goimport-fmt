@@ -8,9 +8,9 @@ import (
 	"os"
 	"sort"
 
-	"github.com/istsh/goimport-fmt/ast"
-	"github.com/istsh/goimport-fmt/config"
-	"github.com/istsh/goimport-fmt/lexer"
+	"github.com/shiroemons/goimport-fmt/ast"
+	"github.com/shiroemons/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/lexer"
 )
 
 func setup() {

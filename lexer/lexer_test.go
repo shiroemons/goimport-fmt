@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/istsh/goimport-fmt/ast"
-	"github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/ast"
+	"github.com/shiroemons/goimport-fmt/config"
 )
 
 func TestLexer_OnlyOneImport(t *testing.T) {
@@ -47,8 +47,8 @@ import (
 
 	"github.com/jinzhu/gorm"
 
-	"github.com/istsh/goimport-fmt/ast"
-	c "github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/ast"
+	c "github.com/shiroemons/goimport-fmt/config"
 )
 
 func main() {
@@ -67,8 +67,8 @@ import (
 		[]byte("\t\"fmt\"\n"),
 		[]byte("\t\"strings\"\n"),
 		[]byte("\t\"github.com/jinzhu/gorm\"\n"),
-		[]byte("\t\"github.com/istsh/goimport-fmt/ast\"\n"),
-		[]byte("\tc \"github.com/istsh/goimport-fmt/config\"\n"),
+		[]byte("\t\"github.com/shiroemons/goimport-fmt/ast\"\n"),
+		[]byte("\tc \"github.com/shiroemons/goimport-fmt/config\"\n"),
 	}
 
 	afterBlock := []byte(`)
@@ -86,7 +86,7 @@ func main() {
 		AfterImportDivision:  afterBlock,
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	got := Lexer(input)
 	if !reflect.DeepEqual(got.BeforeImportDivision, want.BeforeImportDivision) {
 		t.Errorf("Lexer BeforeImportDivision got: %s; want: %s", got.BeforeImportDivision, want.BeforeImportDivision)
@@ -108,8 +108,8 @@ import (
 
 	"github.com/jinzhu/gorm"
 
-	"github.com/istsh/goimport-fmt/ast"
-	c "github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/ast"
+	c "github.com/shiroemons/goimport-fmt/config"
 )
 
 func main() {
@@ -137,17 +137,17 @@ func main() {
 		},
 		&ast.ImportDetail{
 			Alias:       []byte(""),
-			ImportPath:  []byte("github.com/istsh/goimport-fmt/ast"),
+			ImportPath:  []byte("github.com/shiroemons/goimport-fmt/ast"),
 			PackageType: ast.OwnProject,
 		},
 		&ast.ImportDetail{
 			Alias:       []byte("c"),
-			ImportPath:  []byte("github.com/istsh/goimport-fmt/config"),
+			ImportPath:  []byte("github.com/shiroemons/goimport-fmt/config"),
 			PackageType: ast.OwnProject,
 		},
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	ds := Lexer(input)
 	got, err := ds.GetImportDetails()
 	if err != nil {

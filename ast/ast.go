@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/config"
 )
 
 // PackageType is type of import package

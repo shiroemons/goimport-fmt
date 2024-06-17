@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/config"
 )
 
 func TestAnalyze(t *testing.T) {
@@ -37,29 +37,29 @@ func TestAnalyze(t *testing.T) {
 			},
 		},
 		{
-			in: []byte("github.com/istsh/goimport-fmt/ast"),
+			in: []byte("github.com/shiroemons/goimport-fmt/ast"),
 			want: &ImportDetail{
-				ImportPath:  []byte("github.com/istsh/goimport-fmt/ast"),
+				ImportPath:  []byte("github.com/shiroemons/goimport-fmt/ast"),
 				PackageType: OwnProject,
 			},
 		},
 		{
-			in: []byte("github.com/istsh/goimport-fmt/config"),
+			in: []byte("github.com/shiroemons/goimport-fmt/config"),
 			want: &ImportDetail{
-				ImportPath:  []byte("github.com/istsh/goimport-fmt/config"),
+				ImportPath:  []byte("github.com/shiroemons/goimport-fmt/config"),
 				PackageType: OwnProject,
 			},
 		},
 		{
-			in: []byte("github.com/istsh/goimport-fmt/lexer"),
+			in: []byte("github.com/shiroemons/goimport-fmt/lexer"),
 			want: &ImportDetail{
-				ImportPath:  []byte("github.com/istsh/goimport-fmt/lexer"),
+				ImportPath:  []byte("github.com/shiroemons/goimport-fmt/lexer"),
 				PackageType: OwnProject,
 			},
 		},
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	for _, tt := range tests {
 		got, err := Analyze(tt.in)
 		if !reflect.DeepEqual(err, tt.wantErr) {
@@ -138,36 +138,36 @@ func TestAnalyzeIncludeAlias(t *testing.T) {
 		},
 		{
 			in: args{
-				path: []byte("github.com/istsh/goimport-fmt/ast"),
+				path: []byte("github.com/shiroemons/goimport-fmt/ast"),
 			},
 			want: &ImportDetail{
-				ImportPath:  []byte("github.com/istsh/goimport-fmt/ast"),
+				ImportPath:  []byte("github.com/shiroemons/goimport-fmt/ast"),
 				PackageType: OwnProject,
 			},
 		},
 		{
 			in: args{
-				path: []byte("github.com/istsh/goimport-fmt/config"),
+				path: []byte("github.com/shiroemons/goimport-fmt/config"),
 			},
 			want: &ImportDetail{
-				ImportPath:  []byte("github.com/istsh/goimport-fmt/config"),
+				ImportPath:  []byte("github.com/shiroemons/goimport-fmt/config"),
 				PackageType: OwnProject,
 			},
 		},
 		{
 			in: args{
 				alias: []byte("l"),
-				path:  []byte("github.com/istsh/goimport-fmt/lexer"),
+				path:  []byte("github.com/shiroemons/goimport-fmt/lexer"),
 			},
 			want: &ImportDetail{
 				Alias:       []byte("l"),
-				ImportPath:  []byte("github.com/istsh/goimport-fmt/lexer"),
+				ImportPath:  []byte("github.com/shiroemons/goimport-fmt/lexer"),
 				PackageType: OwnProject,
 			},
 		},
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	for _, tt := range tests {
 		got, err := AnalyzeIncludeAlias(tt.in.alias, tt.in.path)
 		if !reflect.DeepEqual(err, tt.wantErr) {

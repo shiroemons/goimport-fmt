@@ -3,7 +3,7 @@ package lexer
 import (
 	"bytes"
 
-	"github.com/istsh/goimport-fmt/ast"
+	"github.com/shiroemons/goimport-fmt/ast"
 )
 
 type importStatus uint

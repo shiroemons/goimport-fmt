@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/istsh/goimport-fmt/config"
-	"github.com/istsh/goimport-fmt/lexer"
+	"github.com/shiroemons/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/lexer"
 )
 
 func Test_createResult_OnlyOneImport(t *testing.T) {
@@ -76,7 +76,7 @@ func main() {
 		AfterImportDivision:  afterBlock,
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	got, err := createResult(ds)
 	if err != nil {
 		t.Fatalf("createResult(ds)=_, %#v; want nil", err)
@@ -92,8 +92,8 @@ func Test_createResult_SomeImport(t *testing.T) {
 import "fmt"
 import "strings"
 import g "github.com/jinzhu/gorm"
-import "github.com/istsh/goimport-fmt/ast"
-import c "github.com/istsh/goimport-fmt/config"
+import "github.com/shiroemons/goimport-fmt/ast"
+import c "github.com/shiroemons/goimport-fmt/config"
 
 func main() {
 	strs := strings.Split("Hello World", " ")
@@ -107,8 +107,8 @@ func main() {
 import "fmt"
 import "strings"
 import g "github.com/jinzhu/gorm"
-import "github.com/istsh/goimport-fmt/ast"
-import c "github.com/istsh/goimport-fmt/config"
+import "github.com/shiroemons/goimport-fmt/ast"
+import c "github.com/shiroemons/goimport-fmt/config"
 
 func main() {
 	strs := strings.Split("Hello World", " ")
@@ -141,8 +141,8 @@ import (
 
 	g "github.com/jinzhu/gorm"
 
-	"github.com/istsh/goimport-fmt/ast"
-	c "github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/ast"
+	c "github.com/shiroemons/goimport-fmt/config"
 )
 
 func main() {
@@ -161,8 +161,8 @@ import (
 		[]byte("\t\"fmt\"\n"),
 		[]byte("\t\"strings\"\n"),
 		[]byte("\tg \"github.com/jinzhu/gorm\"\n"),
-		[]byte("\t\"github.com/istsh/goimport-fmt/ast\"\n"),
-		[]byte("\tc \"github.com/istsh/goimport-fmt/config\"\n"),
+		[]byte("\t\"github.com/shiroemons/goimport-fmt/ast\"\n"),
+		[]byte("\tc \"github.com/shiroemons/goimport-fmt/config\"\n"),
 	}
 
 	afterBlock := []byte(`)
@@ -180,7 +180,7 @@ func main() {
 		AfterImportDivision:  afterBlock,
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	got, err := createResult(ds)
 	if err != nil {
 		t.Fatalf("createResult(ds)=_, %#v; want nil", err)
@@ -194,8 +194,8 @@ func Test_createResult_OnlyStandardAndOwnProjectImport(t *testing.T) {
 	want := []byte(`package main
 
 import "fmt"
-import "github.com/istsh/goimport-fmt/ast"
-import c "github.com/istsh/goimport-fmt/config"
+import "github.com/shiroemons/goimport-fmt/ast"
+import c "github.com/shiroemons/goimport-fmt/config"
 
 func main() {
 	strs := strings.Split("Hello World", " ")
@@ -207,8 +207,8 @@ func main() {
 	beforeBlock := []byte(`package main
 
 import "fmt"
-import "github.com/istsh/goimport-fmt/ast"
-import c "github.com/istsh/goimport-fmt/config"
+import "github.com/shiroemons/goimport-fmt/ast"
+import c "github.com/shiroemons/goimport-fmt/config"
 
 func main() {
 	strs := strings.Split("Hello World", " ")
@@ -223,7 +223,7 @@ func main() {
 		AfterImportDivision:  nil,
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	got, err := createResult(ds)
 	if err != nil {
 		t.Fatalf("createResult(ds)=_, %#v; want nil", err)
@@ -239,8 +239,8 @@ func Test_createResult_OnlyStandardAndOwnProjectImportWithBrackets(t *testing.T)
 import (
 	"fmt"
 
-	"github.com/istsh/goimport-fmt/ast"
-	c "github.com/istsh/goimport-fmt/config"
+	"github.com/shiroemons/goimport-fmt/ast"
+	c "github.com/shiroemons/goimport-fmt/config"
 )
 
 func main() {
@@ -257,8 +257,8 @@ import (
 
 	importBlock := [][]byte{
 		[]byte("\t\"fmt\"\n"),
-		[]byte("\t\"github.com/istsh/goimport-fmt/ast\"\n"),
-		[]byte("\tc \"github.com/istsh/goimport-fmt/config\"\n"),
+		[]byte("\t\"github.com/shiroemons/goimport-fmt/ast\"\n"),
+		[]byte("\tc \"github.com/shiroemons/goimport-fmt/config\"\n"),
 	}
 
 	afterBlock := []byte(`)
@@ -276,7 +276,7 @@ func main() {
 		AfterImportDivision:  afterBlock,
 	}
 
-	config.Set(os.Getenv("GOROOT"), "", "github.com/istsh/goimport-fmt")
+	config.Set(os.Getenv("GOROOT"), "", "github.com/shiroemons/goimport-fmt")
 	got, err := createResult(ds)
 	if err != nil {
 		t.Fatalf("createResult(ds)=_, %#v; want nil", err)
