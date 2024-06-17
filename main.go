@@ -101,20 +101,25 @@ func createResult(ds *lexer.DividedSrc) ([]byte, error) {
 	for _, id := range ids {
 		switch id.PackageType {
 		case ast.Standard:
-			if beforePackageType == ast.Unknown {
-				beforePackageType = ast.Standard
+			if beforePackageType != ast.Standard && beforePackageType != ast.Unknown {
+				res = append(res, '\n')
 			}
+			beforePackageType = ast.Standard
 			res = append(res, createBytes(id)...)
 		case ast.ThirdParty:
-			if beforePackageType == ast.Standard {
+			if beforePackageType != ast.ThirdParty {
+				if beforePackageType != ast.Unknown {
+					res = append(res, '\n')
+				}
 				beforePackageType = ast.ThirdParty
-				res = append(res, '\n')
 			}
 			res = append(res, createBytes(id)...)
 		case ast.OwnProject:
-			if beforePackageType == ast.ThirdParty {
+			if beforePackageType != ast.OwnProject {
+				if beforePackageType != ast.Unknown {
+					res = append(res, '\n')
+				}
 				beforePackageType = ast.OwnProject
-				res = append(res, '\n')
 			}
 			res = append(res, createBytes(id)...)
 		default:
